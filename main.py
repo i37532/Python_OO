@@ -9,7 +9,12 @@ class Dog:  ## 类名首字母一般大写
     def bark(self):
         print(f'My name is {self.name},My blood is {self.blood}')
     def attack(self,enemy):
-        enemy.blood = enemy.blood - self.power
+        enemy.reduce_blood(self.power)
+    def reduce_blood(self,val):
+        if self.blood > val:
+            self.blood -= val
+        else:
+            self.blood = 0
 
 # 创建实例
 d1 = Dog(name="大黄",height=1.2,power=20)
@@ -23,4 +28,10 @@ print(d1.power)
 # 调用方法
 d1.bark()
 d2.attack(d1)
+d1.bark()
+
+# 通过方法修改属性值
+d1.reduce_blood(50)
+d1.bark()
+d1.reduce_blood(50)
 d1.bark()
